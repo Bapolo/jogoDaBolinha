@@ -1,6 +1,9 @@
 window.onload = () =>
 {
     const canvas = document.querySelector("#canvas")
+    checkOrientation()
+
+    
     const contexto = canvas.getContext("2d") 
 
     const larguraDoCanvas = canvas.width
@@ -8,12 +11,11 @@ window.onload = () =>
     const xStart = 0
     const yStart = 0
     const bolinhas = []
-    let tempoDeFabricacaoDeBolinhas = 1000
+    let tempoDeFabricacaoDeBolinhas = 2000
     let numeroDeBolinhasRemovidas = 0
 
     window.addEventListener('resize', checkOrientation);
-    window.addEventListener('load', checkOrientation);
-
+ 
     function checkOrientation() {
         const message = document.getElementById('rotate-message');
         
@@ -27,7 +29,6 @@ window.onload = () =>
             canvas.style.display = 'none';
         }
     }
- 
 
     class Bolinha 
     {
@@ -67,6 +68,7 @@ window.onload = () =>
 
     }   
 
+    
     const desenhar = () =>
     {
        bolinhas.forEach((bolinha) => 
@@ -77,6 +79,11 @@ window.onload = () =>
             contexto.arc(bolinha.posicaoXDoCirculo, bolinha.posicaoYDoCirculo, bolinha.raioDoCirculo, 0, 2 * Math.PI)
             contexto.fill()
             contexto.stroke()
+
+            contexto.font = "50px Arial"
+            contexto.fillStyle = "black"
+            contexto.fillText(numeroDeBolinhasRemovidas, canvas.width/65, canvas.height/6)
+            
         })  
     }
 
@@ -85,7 +92,7 @@ window.onload = () =>
         fabricarBolinhas()
         console.log(bolinhas.length)
         desenhar()
-    }, tempoDeFabricacaoDeBolinhas)
+    }, numeroDeBolinhasRemovidas % 10 == 0? tempoDeFabricacaoDeBolinhas /=2 : tempoDeFabricacaoDeBolinhas)
        
     canvas.addEventListener("click", (event) =>
     {
@@ -120,10 +127,7 @@ window.onload = () =>
                 }
             })
     
-            if (numeroDeBolinhasRemovidas % 10 === 0)
-            {
-                tempoDeFabricacaoDeBolinhas *= 0.8
-            } 
+           
     }
 
     function fabricarBolinhas()
