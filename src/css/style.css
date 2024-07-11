@@ -6,11 +6,44 @@
     overflow: hidden;
 }
 
-body
-{
-    text-align: center;
-    padding-top: 50px;
+
+/* Este CSS aplica um estilo específico quando o dispositivo está em modo paisagem */
+@media screen and (orientation: landscape) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    #myCanvas {
+        border: 1px solid #000000;
+    }
 }
+
+/* Mensagem para modo retrato */
+@media screen and (orientation: portrait) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
+
+    #rotate-message {
+        display: block;
+        font-size: 24px;
+        text-align: center;
+    }
+
+    #myCanvas {
+        display: none;
+    }
+}
+
 
 #canvas
 {

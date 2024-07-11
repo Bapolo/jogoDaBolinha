@@ -1,5 +1,23 @@
 window.onload = () =>
 {
+
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('load', checkOrientation);
+
+    function checkOrientation() {
+        const message = document.getElementById('rotate-message');
+        const canvas = document.getElementById('myCanvas');
+        
+        if (window.innerWidth > window.innerHeight) {
+            // Modo paisagem
+            message.style.display = 'none';
+            canvas.style.display = 'block';
+        } else {
+            // Modo retrato
+            message.style.display = 'block';
+            canvas.style.display = 'none';
+        }
+    }
     const canvas = document.querySelector("#canvas")
     const contexto = canvas.getContext("2d") 
 
