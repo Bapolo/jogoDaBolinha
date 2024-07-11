@@ -1,12 +1,21 @@
 window.onload = () =>
 {
+    const canvas = document.querySelector("#canvas")
+    const contexto = canvas.getContext("2d") 
+
+    const larguraDoCanvas = canvas.width
+    const alturaDoCanvas = canvas.height
+    const xStart = 0
+    const yStart = 0
+    const bolinhas = []
+    let tempoDeFabricacaoDeBolinhas = 1000
+    let numeroDeBolinhasRemovidas = 0
 
     window.addEventListener('resize', checkOrientation);
     window.addEventListener('load', checkOrientation);
 
     function checkOrientation() {
         const message = document.getElementById('rotate-message');
-        const canvas = document.getElementById('myCanvas');
         
         if (window.innerWidth > window.innerHeight) {
             // Modo paisagem
@@ -18,16 +27,7 @@ window.onload = () =>
             canvas.style.display = 'none';
         }
     }
-    const canvas = document.querySelector("#canvas")
-    const contexto = canvas.getContext("2d") 
-
-    const larguraDoCanvas = canvas.width
-    const alturaDoCanvas = canvas.height
-    const xStart = 0
-    const yStart = 0
-    const bolinhas = []
-    let tempoDeFabricacaoDeBolinhas = 1000
-    let numeroDeBolinhasRemovidas = 0
+ 
 
     class Bolinha 
     {
